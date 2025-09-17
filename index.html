@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<title>TGSYA HUB</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #000000;
+  color: #e0e0e0;
+}
+
+/* Header */
+header {
+  background: #1b1b1b;
+  color: #e0e0e0;
+  padding: 0.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+header h1 {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typing 1.5s steps(10, end) forwards;
+  font-weight: bold;
+  font-size: 1.8rem;
+}
+@keyframes typing {
+  from { width: 0 }
+  to { width: 12ch } /* antal tecken */
+}
+
+/* Nav för desktop */
+nav {
+  display: flex;
+  background: #1e1e1e;
+  flex-wrap: wrap;
+}
+nav button {
+  flex: 1;
+  padding: 1rem;
+  border: none;
+  background: #2a2a2a;
+  color: #e0e0e0;
+  cursor: pointer;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s;
+  border-radius: 6px;
+  margin: 5px;
+}
+nav button:hover {
+  background: #555;
+  transform: scale(1.03);
+}
+
+/* Ikoner */
+.icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  transition: transform 0.3s;
+}
+nav button:hover .icon,
+.app-grid button:hover .icon {
+  transform: scale(1.1);
+}
+
+/* Content (schema) */
+.content {
+  padding: 0;
+  display: none;
+  height: calc(100vh - 120px);
+}
+.active {
+  display: block;
+}
+iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: white;
+}
+
+/* Rutnät för mobilappar */
+.app-grid {
+  display: none;
+  padding: 20px;
+  gap: 30px;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: center;
+  margin-top: 20px;
+  
+}
+.app-grid button {
+  background: #2a2a2a;
+  border: 2px solid #444;
+  border-radius: 12px;
+  padding: 15px;
+  width: 100%;
+  max-width: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 1rem;
+  color: #e0e0e0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+.app-grid button:hover {
+  background: #ffffff;
+  transform: translateY(-3px);
+}
+.app-grid .icon {
+  width: 50px;
+  height: 50px;
+}
+
+/* Restaurang-del */
+.restaurants {
+  display: none;
+  padding: 20px;
+  border-top: 1px solid #333;
+  background: url('Hemsidan/Restaurang_bild3.jpg') center/cover no-repeat;
+}
+.restaurants h2 {
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.restaurant-cards {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr 1fr;
+}
+.card {
+  background: #2a2a2a;
+  border: 2px solid #444;
+  border-radius: 12px;
+  padding: 15px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-align: center;
+}
+.card:hover {
+  background: #ffffff;
+  transform: translateY(-3px);
+}
+.card h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+.card p {
+  margin: 8px 0 0;
+  font-size: 0.9rem;
+  color: #aaa;
+}
+
+/* Mobilanpassning */
+@media (max-width: 700px) {
+  nav, #schema {
+    display: none;
+  }
+  .app-grid {
+    display: grid;
+  }
+   .restaurants {
+    display: block; /* visas på mobil */
+  }
+  .restaurant-cards {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>TGSYA HUB</h1>
+</header>
+
+<!-- Appar i grid (mobil) -->
+<div class="app-grid">
+  <button onclick="window.open('https://schema.mau.se/setup/jsp/Schema.jsp?startDatum=idag&intervallTyp=a&intervallAntal=1&sprak=SV&sokMedAND=true&forklaringar=true&resurser=p.TGSYA25h','_self')">
+    <img src="Hemsidan/Schema_bild.png" alt="Schema" class="icon">
+    Schema
+  </button>
+  <button onclick="window.open('https://mau.se/canvas/','_self')">
+    <img src="Hemsidan/Canvas_bild.png" alt="Canvas" class="icon">
+    Canvas
+  </button>
+  <button onclick="window.open('https://www.student.ladok.se/student/app/studentwebb/start','_self')">
+    <img src="Hemsidan/Ladok_bild.png" alt="Ladok" class="icon">
+    Ladok
+  </button>
+  <button onclick="window.open('https://schema.mau.se/aktivitetsanmalan.jsp?','_self')">
+    <img src="Hemsidan/Kronox_bild.png" alt="Kronox" class="icon">
+    Kronox
+  </button>
+  <button onclick="window.open('https://ids.mau.se/Home/Menu','_self')">
+    <img src="Hemsidan/IDS_bild.png" alt="IDS" class="icon">
+    DatorID
+  </button>
+  <button onclick="window.open('https://mau.inspera.com/','_self')">
+    <img src="Hemsidan/Inspera_bild.png" alt="Inspera" class="icon">
+    Inspera
+  </button>
+</div>
+
+<!-- Nav för desktop -->
+<nav>
+  <button onclick="window.open('https://mau.se/canvas/','_self')">
+    <img src="Hemsidan/Canvas_bild.png" alt="Canvas" class="icon">
+    Canvas
+  </button>
+  <button onclick="window.open('https://www.student.ladok.se/student/app/studentwebb/start','_self')">
+    <img src="Hemsidan/Ladok_bild.png" alt="Ladok" class="icon">
+    Ladok
+  </button>
+  <button onclick="window.open('https://schema.mau.se/aktivitetsanmalan.jsp?','_self')">
+    <img src="Hemsidan/Kronox_bild.png" alt="Kronox" class="icon">
+    Kronox
+  </button>
+  <button onclick="window.open('https://ids.mau.se/Home/Menu','_self')">
+    <img src="Hemsidan/IDS_bild.png" alt="IDS" class="icon">
+    DatorID
+  </button>
+  <button onclick="window.open('https://mau.inspera.com/','_self')">
+    <img src="Hemsidan/Inspera_bild.png" alt="Inspera" class="icon">
+    Inspera
+  </button>
+</nav>
+
+<!-- Schema (desktop) -->
+<div id="schema" class="content active">
+  <iframe src="https://schema.mau.se/setup/jsp/Schema.jsp?startDatum=idag&intervallTyp=a&intervallAntal=1&sprak=SV&sokMedAND=true&forklaringar=true&resurser=p.TGSYA25h"></iframe>
+</div>
+
+<!-- Restauranger -->
+<section class="restaurants">
+  <h2>🍴 Restauranger</h2>
+  <div class="restaurant-cards">
+    <div class="card" onclick="window.open('https://restaurangniagara.se/','_self')">
+      <h3>Niagara</h3>
+      <p>Lunch & fika vid MAU Niagara.</p>
+    </div>
+    <div class="card" onclick="window.open('https://www.hors.se/malmo/17/3/restaurang-orkanen/','_self')">
+      <h3>Orkanen</h3>
+      <p>Populär lunchrestaurang i Orkanen.</p>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
